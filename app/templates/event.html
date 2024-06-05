@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{% if form.title.data %}Edit{% else %}Create{% endif %} Event - Student Calendar{% endblock %}
+{% block content %}
+<h1>{% if form.title.data %}Edit{% else %}Create{% endif %} Event</h1>
+<form action="" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.title.label }}<br>
+        {{ form.title(size=32) }}
+    </p>
+    <p>
+        {{ form.description.label }}<br>
+        {{ form.description(rows=4, cols=32) }}
+    </p>
+    <p>
+        {{ form.start_time.label }}<br>
+        {{ form.start_time() }}
+    </p>
+    <p>
+        {{ form.end_time.label }}<br>
+        {{ form.end_time() }}
+    </p>
+    <p>
+        {{ form.attachment.label }}<br>
+        {{ form.attachment() }}
+    </p>
+    <p><input type="submit" value="Save"></p>
+</form>
+{% endblock %}
