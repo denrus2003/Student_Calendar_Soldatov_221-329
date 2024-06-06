@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Home - Student Calendar{% endblock %}
+{% block content %}
+<h1>Welcome to Student Calendar</h1>
+{% if current_user.is_authenticated %}
+    <a href="{{ url_for('create_event') }}">Create New Event</a>
+    <h2>Your Events</h2>
+    <ul>
+        {% for event in events %}
+            <li>
+                <a href="{{ url_for('edit_event', id=event.id) }}">{{ event.title }}</a>
+                <form action="{{ url_for('delete_event', id=event.id) }}" method="post" style="display:inline;">
+                    <input type="submit" value="Delete">
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Please <a href="{{ url_for('login') }}">login</a> to see your events.</p>
+{% endif %}
+{% endblock %}
