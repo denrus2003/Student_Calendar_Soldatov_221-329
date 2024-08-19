@@ -42,3 +42,16 @@ main {
     background-color: #ffcccc;
     border: 1px solid #ff9999;
 }
+
+
+.error {
+
+    color: red;
+  
+  }
+
+  .inline-form {
+
+    display: inline;
+
+}
