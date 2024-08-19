@@ -1,11 +1,110 @@
+# Общие исключения
 venv/
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
-.DS_Store
 *.sqlite3
 *.log
-instance/
+.DS_Store
+
+# Локальные окружения
 .env
+instance/
 migrations/
 uploads/
+
+# Python пакеты и байт-код
+*.py[cod]
+*$py.class
+*.so
+
+# Пакеты/дистрибуции
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Логи инсталляторов
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Отчеты тестов и покрытия
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Flask stuff
+instance/
+.webassets-cache
+
+# Django stuff
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Системные и IDE файлы
+.spyderproject
+.spyproject
+.ropeproject
+.idea/
+cython_debug/
+
+# mkdocs
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# PyCharm
+.idea/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# pipenv, poetry, pdm
+.pdm.toml
+.pdm-python
+.pdm-build/
