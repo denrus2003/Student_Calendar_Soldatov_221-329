@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Создать новое событие{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Создать новое событие</h2>
+
+    <!-- Блок для отображения сообщений -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <!-- Конец блока -->
+
+    <!-- Проверка на ошибки формы -->
+    {# 
+    {% if form.errors %}
+    <ul>
+    {% for field, errors in form.errors.items() %}
+        <li>{{ field }}: {{ errors[0] }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    #}
+
+    <!-- Форма создания события -->
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            {{ form.title.label }} 
+            {{ form.title(class="form-control") }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.description.label }} 
+            {{ form.description(class="form-control") }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.date.label }} 
+            {{ form.date(class="form-control") }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.start_time.label }} 
+            {{ form.start_time(class="form-control") }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.end_time.label }} 
+            {{ form.end_time(class="form-control") }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.attachment.label }} 
+            {{ form.attachment(class="form-control-file") }}
+        </div>
+
+        <div class="form-actions">
+            {{ form.submit(class="btn") }}
+        </div>
+    </form>
+</div>
+{% endblock %}

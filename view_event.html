@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ event.title }}{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>{{ event.title }}</h2>
+    <p><strong>Дата:</strong> {{ event.date.strftime('%d-%m-%Y') }}</p>
+    <p><strong>Время начала:</strong> {{ event.start_time.strftime('%H:%M') }}</p>
+    <p><strong>Время окончания:</strong> {{ event.end_time.strftime('%H:%M') }}</p>
+    <p><strong>Описание:</strong> {{ event.description }}</p>
+
+    {% if event.attachment %}
+    <p><strong>Загруженный файл:</strong> <a href="{{ url_for('static', filename='uploads/' + event.attachment) }}" download>Скачать</a></p>
+    {% endif %}
+
+    <div class="button-row">
+        <a href="{{ url_for('edit_event', id=event.id) }}" class="btn">Редактировать</a>
+        <a href="{{ url_for('add_to_google', event_id=event.id) }}" class="btn btn-google">Добавить в Google Календарь</a>
+        <a href="{{ url_for('add_to_apple', event_id=event.id) }}" class="btn btn-apple">Добавить в Apple Календарь</a>
+    </div>
+</div>
+{% endblock %}

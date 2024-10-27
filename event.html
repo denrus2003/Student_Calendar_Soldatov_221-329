@@ -1,29 +1,62 @@
 {% extends "base.html" %}
-{% block title %}{% if form.title.data %}Edit{% else %}Create{% endif %} Event - Student Calendar{% endblock %}
+{% block title %}{% if form.title.data %}Редактировать{% else %}Создать{% endif %} Событие{% endblock %}
 {% block content %}
-<h1>{% if form.title.data %}Edit{% else %}Create{% endif %} Event</h1>
-<form action="" method="post" enctype="multipart/form-data">
-    {{ form.hidden_tag() }}
-    <p>
-        {{ form.title.label }}<br>
-        {{ form.title(size=32) }}
-    </p>
-    <p>
-        {{ form.description.label }}<br>
-        {{ form.description(rows=4, cols=32) }}
-    </p>
-    <p>
-        {{ form.start_time.label }}<br>
-        {{ form.start_time() }}
-    </p>
-    <p>
-        {{ form.end_time.label }}<br>
-        {{ form.end_time() }}
-    </p>
-    <p>
-        {{ form.attachment.label }}<br>
-        {{ form.attachment() }}
-    </p>
-    <p><input type="submit" value="Save"></p>
-</form>
+<div class="container">
+    <h2>{% if form.title.data %}Редактировать{% else %}Создать{% endif %} Событие</h2>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.title.label }}
+            <input type="text" id="title" name="title" value="{{ form.title.data }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+            {{ form.description.label }}
+            <textarea id="description" name="description" class="form-control">{{ form.description.data }}</textarea>
+        </div>
+
+        <div class="form-group">
+            {{ form.date.label }}
+            <input type="date" id="date" name="date" value="{{ form.date.data }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+            {{ form.start_time.label }}
+            <input type="time" id="start_time" name="start_time" value="{{ form.start_time.data }}" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            {{ form.end_time.label }}
+            <input type="time" id="end_time" name="end_time" value="{{ form.end_time.data }}" class="form-control">
+        </div>
+
+        <!-- Отображение прикреплённых файлов -->
+        {% if form.attachment.data %}
+        <div class="form-group">
+            <label>Загруженный файл:</label>
+            <ul>
+                <li><a href="{{ url_for('static', filename='uploads/' + form.attachment.data) }}" target="_blank">{{ form.attachment.data }}</a></li>
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- Поле для загрузки новых файлов -->
+        <div class="form-group">
+            {{ form.attachment.label }}
+            {{ form.attachment(class="form-control-file") }}
+        </div>
+
+        <div class="form-actions">
+            <button type="button" id="editButton" class="btn">Изменить</button>
+            <input type="submit" id="submitButton" value="Сохранить изменения" class="btn hidden">
+        </div>
+        <a href="{{ url_for('add_to_google', event_id=event.id) }}" class="btn btn-google">Добавить в Google Календарь</a>
+        <a href="{{ url_for('add_to_apple', event_id=event.id) }}" class="btn btn-apple">Добавить в Apple Календарь</a>
+    </form>
+</div>
+
+<!-- Подключение скрипта для управления кнопками и полями -->
+<script src="{{ url_for('static', filename='js/event.js') }}"></script>
 {% endblock %}
